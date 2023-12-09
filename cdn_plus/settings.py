@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'home'
 ]
 
 MIDDLEWARE = [
@@ -73,12 +74,24 @@ WSGI_APPLICATION = 'cdn_plus.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': f"{BASE_DIR}/{'db'}",
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'APPVIEWX',
+        'USER': 'appviewx',
+        'PASSWORD': 'appviewx@123',
+        'HOST': 'localhost',  # Set to the PostgreSQL server's address
+        'PORT': '3307',      # Set to the PostgreSQL server's port
     }
 }
+
 
 
 # Password validation
