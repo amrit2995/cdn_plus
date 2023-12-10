@@ -6,3 +6,4 @@ pymongo==4.6.1
 sqlparse==0.2.4
 typing_extensions==4.8.0
 djangorestframework==3.14.0
+mysqlclient==2.1.0
