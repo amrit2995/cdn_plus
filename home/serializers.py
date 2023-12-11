@@ -1,9 +1,10 @@
 from rest_framework import serializers
-from .models import CDN
+from .models import Distribution
 
-class CDNSerializer(serializers.ModelSerializer):
+class DistributionSerializer(serializers.ModelSerializer):
     name = serializers.CharField(max_length=50)
     
     class Meta:
-        model = CDN
-        fields = ["name"]
+        model = Distribution
+        # fields = ["name", "provider", "status", "origin_server", "ssl_tls_config", "caching_policy"]
+        fields = '__all__'

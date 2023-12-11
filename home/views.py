@@ -6,33 +6,38 @@ from rest_framework.response import Response
 from rest_framework import generics
 from rest_framework import mixins
 
-from .models import CDN
-from .serializers import CDNSerializer
+from .models import Distribution
+from .serializers import DistributionSerializer
 
-class CDNList(mixins.ListModelMixin,
+class DistributionList(mixins.ListModelMixin,
                   mixins.CreateModelMixin,
                   generics.GenericAPIView):
-    queryset = CDN.objects.all()
-    serializer_class = CDNSerializer
+    queryset = Distribution.objects.all()
+    serializer_class = DistributionSerializer
 
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
-        return self.create(request, *args, **kwargs)        
+        return self.create(request, *args, **kwargs)
 
-class CDNDetail(mixins.RetrieveModelMixin,
+    def delete(self, request, *args, **kwargs):
+        # Delete all records in the Distribution model
+        Distribution.objects.all().delete()
+        return Response("All records deleted successfully.", status=status.HTTP_204_NO_CONTENT)
+
+class DistributionDetail(mixins.RetrieveModelMixin,
                     mixins.UpdateModelMixin,
                     mixins.DestroyModelMixin,
                     generics.GenericAPIView):
-    queryset = CDN.objects.all()
-    serializer_class = CDNSerializer
+    queryset = Distribution.objects.all()
+    serializer_class = DistributionSerializer
 
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
 
     def put(self, request, *args, **kwargs):
-        return self.update(request, *args, **kwargs)
+        return self.update(request, *args, **kwargs, partial=True)
 
     def delete(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs)
