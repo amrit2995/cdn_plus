@@ -8,7 +8,7 @@ from rest_framework import mixins
 
 from .models import Distribution
 from .serializers import DistributionSerializer
-
+from .vendor import Vendor
 class DistributionList(mixins.ListModelMixin,
                   mixins.CreateModelMixin,
                   generics.GenericAPIView):
@@ -33,7 +33,7 @@ class DistributionDetail(mixins.RetrieveModelMixin,
     queryset = Distribution.objects.all()
     serializer_class = DistributionSerializer
 
-    def get(self, request, *args, **kwargs):
+    def get(self, request, *args, **kwargs):    
         return self.retrieve(request, *args, **kwargs)
 
     def put(self, request, *args, **kwargs):
